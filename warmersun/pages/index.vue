@@ -1,34 +1,44 @@
 <template>
-    <div>
-        <!-- <h1>Index Page</h1> -->
-        <h1>Upload a file</h1>
-        <input type="file" @change="onFileChange" />
-        <button @click="upload">Upload</button>
-
+    <div class="home">
+        <h1>Welcome to Warmer Sun!</h1>
+        <p>Join us in making a positive impact on our parks and the environment.</p>
+        <button @click="register">Register as a Volunteer</button>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            file: null
-        }
-    },
     methods: {
-        onFileChange(e) {
-            this.file = e.target.files[0];
-        },
-        async upload() {
-            const formData = new FormData();
-            formData.append('image', this.file);
-            console.log(formData);
-            // await this.$axios.post('http://localhost:3000/upload', formData);
+        register() {
+            // Add logic to handle volunteer registration
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+.home {
+    text-align: center;
+    margin-top: 100px;
+}
 
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 </style>

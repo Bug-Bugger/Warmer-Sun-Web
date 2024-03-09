@@ -5,6 +5,8 @@
             <ul>
                 <li v-for="reward in rewards" :key="reward.id">
                     {{ reward.name }} - {{ reward.points }} points
+                    <img v-if="reward.img" :src="reward.img" alt="Reward Image" />
+                    <p>{{ reward.description }}</p>
                     <button @click="redeemReward(reward)">Redeem</button>
                 </li>
             </ul>
@@ -29,9 +31,10 @@ export default {
             points: 100, // Replace with actual points value
             showReward: false,
             rewards: [
-                { id: 1, name: 'Reward 1', points: 50},
-                { id: 2, name: 'Reward 2', points: 100 },
-                { id: 3, name: 'Reward 3', points: 150 },
+                { id: 1, name: 'Reward 1', points: 50, img: "https://via.placeholder.com/150", description: "This is a description of Reward 1."},
+                { id: 2, name: 'Reward 2', points: 100, img: "https://via.placeholder.com/150", description: "This is a description of Reward 2."},
+                { id: 3, name: 'Reward 3', points: 150,    img: "https://via.placeholder.com/150", description: "This is a description of Reward 3."},
+                { id: 4, name: 'Reward 4', points: 150,    img: "https://via.placeholder.com/150", description: "This is a description of Reward 4."},
             ],
         };
     },
@@ -66,9 +69,15 @@ export default {
     ul {
         list-style-type: none;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     ul li {
         margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .show {
         display: block;
