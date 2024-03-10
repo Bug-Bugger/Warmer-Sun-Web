@@ -16,6 +16,15 @@
             v-if="gotLocation"
             :lat-lng="[userLocation.lat, userLocation.lng]"
           ></l-marker>
+          <l-marker
+            v-for="spot in spotLocation"
+            :lat-lng="[spot.lat, spot.lng]"
+          >
+        <l-popup>
+          <h1>Spot</h1>
+          <p>Spot</p>
+        </l-popup>
+        </l-marker>
         </l-map>
       </client-only>
     </div>
@@ -27,8 +36,14 @@
   <script>
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import { useUserStore } from "~/stores/userStore";
+import axios from "axios";
 //   import { icon } from "leaflet";
 export default {
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
   components: { LMap, LTileLayer },
   props: {
     defaultLocation: {
@@ -43,6 +58,7 @@ export default {
     return {
       userLocation: {},
       parkLocation: [],
+      spotLocation: [],
       tileProvider: {
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -54,6 +70,8 @@ export default {
   },
   mounted() {
     this.getUserPosition();
+    this.getSpotLocation();
+    
   },
   methods: {
     async getUserPosition() {
@@ -106,6 +124,25 @@ export default {
       //   })
       // });
     },
+
+    async getSpotLocation() {
+      axios.get(this.userStore.url + "/spot/").then((res) => {
+        console.log(res.data.spots, "spot location");
+        res.data.spots.forEach((spot) => {
+          this.spotLocation.push({
+            lat: spot.latitude,
+            lng: spot.longitude,
+            name: spot.name,
+            park: spot.park,
+          });
+        });
+        console.log(this.spotLocation, "spot location")
+        console.log(this.spotLocation[0], "spot location lat")
+      })
+
+      ;
+    },
+    
   },
 };
 </script>
