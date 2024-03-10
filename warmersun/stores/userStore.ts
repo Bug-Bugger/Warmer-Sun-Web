@@ -36,7 +36,11 @@ export const useUserStore = defineStore("user", {
         },
         async register(email: string, password: string) {
             try {
+                
                 const response = await axios.post(`${url}/users`, {
+                    Headers: {
+                        'Content-Type': 'application/json',
+                    },
                     email,
                     password,
                 });
@@ -45,7 +49,7 @@ export const useUserStore = defineStore("user", {
                 console.log(this.user);
                 return response.data;
             } catch (error) {
-                return error.response.data;
+                return error
             }
         }
 
