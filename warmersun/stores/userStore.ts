@@ -3,13 +3,14 @@ import axios from "axios";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
 
-const url = "http://34.162.44.216/api/" 
+const url = "http://34.162.44.216/api" 
 
 export const useUserStore = defineStore("user", {
 
     state: () => ({
         user: null,
         token: null,
+        url: "http://34.162.44.216/api",
     }),
 
     actions: {        
@@ -36,7 +37,11 @@ export const useUserStore = defineStore("user", {
         },
         async register(email: string, password: string) {
             try {
+                
                 const response = await axios.post(`${url}/users`, {
+                    Headers: {
+                        'Content-Type': 'application/json',
+                    },
                     email,
                     password,
                 });
@@ -45,7 +50,7 @@ export const useUserStore = defineStore("user", {
                 console.log(this.user);
                 return response.data;
             } catch (error) {
-                return error.response.data;
+                return error
             }
         }
 

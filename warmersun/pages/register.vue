@@ -4,17 +4,17 @@
         <div class="login-content">
           <h2>New to Warmer Sun?</h2>
           <div class="input-group">
-            <input type="text" id="name" name="first-name" placeholder="First Name">
+            <input v-model="firstName" type="text" id="name" name="first-name" placeholder="First Name">
           </div>
 
           <div class="input-group">
-            <input type="text" id="name" name="last-name" placeholder="Last Name">
+            <input v-model="lastName" type="text" id="name" name="last-name" placeholder="Last Name">
           </div>
-          <div class="input-group">
+          <!-- <div class="input-group">
             <input type="email" id="email" name="email" placeholder="Email">
-          </div>
+          </div> -->
           <div class="input-group">
-            <input type="password" id="password" name="password" placeholder="Password">
+            <input v-model="password" type="password" id="password" name="password" placeholder="Password">
           </div>
           <div class="submit-btn">
             <div @click="register">Register!</div>
@@ -27,22 +27,37 @@
     </section>
   </template>
   
-  <script setup>
+  <script>
   import { useUserStore } from '~/stores/userStore';
+  import { ref } from 'vue';
 
-  const userStore = useUserStore();
+  export default {
+    setup() {
+      const userStore = useUserStore();
+      const firstName = ref('');
+      const lastName = ref('');
+      const email = ref('');
+      const password = ref('');
 
-  const register = () => {
-    // prett
-    const firstName = document.getElementById('first-name').value;
-    const lastName = document.getElementById('last-name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+      const register = () => {
 
+        // console.log(firstName.value, password.value);
+        // console.log(lastName.value)
+        const userName = firstName.value + ' ' + lastName.value;
 
-    
-    userStore.register(firstName, lastName, email, password);
-  }
+        console.log(userName, password.value);
+        userStore.register(userName, password.value);
+      };
+
+      return {
+        firstName,
+        lastName,
+        email,
+        password,
+        register,
+      };
+    },
+  };
 
  
   </script>
