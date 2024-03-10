@@ -13,7 +13,7 @@
     </div>
     <div class="my-rewards">
       <h1>My Rewards</h1>
-      <p>Points: {{ userStore.points }}</p>
+      <p style="font-size:20px">Points: {{ userStore.points }}</p>
       <button @click="redeemReward">Redeem Reward</button>
       <div v-if="showReward">
         <h2>Congratulations!</h2>
@@ -91,8 +91,8 @@ export default {
   },
   methods: {
     redeemReward(reward) {
-      if (this.points >= reward.points) {
-        this.points -= reward.points;
+      if (this.userStore.points >= reward.points) {
+        this.userStore.points -= reward.points;
         this.showReward = true;
       } else {
         alert("Insufficient points to redeem this reward.");
@@ -153,6 +153,28 @@ li {
 	align-items: center;
 	padding: 1.5rem;
 	border-radius: 1rem;
+}
+
+
+button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #459da0; /* A similar green shade */
+  border: none;
+  color: white;
+  border-radius: 20px; /* Rounded edges */
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  outline: none;
+}
+
+ button:hover {
+  background-color: #458ca0; /* A slightly darker green for hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow for hover */
+  transform: translateY(-2px); /* Slight raise effect */
 }
 
 </style>
