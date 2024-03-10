@@ -17,7 +17,7 @@
             <input type="password" id="password" name="password" placeholder="Password">
           </div>
           <div class="submit-btn">
-            <div @click="registerUser">Register!</div>
+            <div @click="register">Register!</div>
           </div>
           <div class="have-account">
               <p>Already have an account? <a href="/login">Login!</a></p>
@@ -31,7 +31,19 @@
   import { useUserStore } from '~/stores/userStore';
 
   const userStore = useUserStore();
-  
+
+  const register = () => {
+    // prett
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+
+    
+    userStore.register(firstName, lastName, email, password);
+  }
+
  
   </script>
   

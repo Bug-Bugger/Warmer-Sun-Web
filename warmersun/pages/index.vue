@@ -20,14 +20,15 @@ export default {
 .home {
     text-align: center;
     /* margin-top: 100px; */
-    background-image: url('https://via.placeholder.com/150');
+    background-image: url('../assets/home.png');
     background-size: cover;
     height: 100vh;
+    width: 100vw;
 }
 
 h1 {
     font-size: 32px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 p {
