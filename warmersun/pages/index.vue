@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <div class="home"> 
     <div class="mainpage">
       <h1 class="header">Welcome to Warmer Sun!</h1>
-      <div class="quote-wrapper">
+      <div class="quote-wrapper">                
         <img src="../assets/earth.png" class="circle" alt="" />
         <blockquote class="text">
           <p>
@@ -80,6 +80,7 @@ p {
     rgba(0, 128, 172, 1) 70%,
     rgba(0, 128, 172, 0) 70.3%
   );
+  opacity: 0.9;
 }
 
 .text p {
@@ -163,7 +164,7 @@ p {
   opacity: 0.9;
 }
 .circle {
-  background-image: url("../assets/recycle.png");
+  background-image: url("../assets/recycle.jpg");
   width: 50px;
   height: 50px;
   border-radius: 50%;

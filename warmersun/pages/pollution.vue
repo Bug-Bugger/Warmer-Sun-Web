@@ -2,7 +2,7 @@
   <div class="container">
     <div class="upload-section">
       <form @submit.prevent="submitFile">
-        <input type="file" @change="handleFileChange" accept=".csv" />
+        <input class="file-upload" type="file" @change="handleFileChange" accept=".csv" />
         <button type="submit">Upload</button>
       </form>
     </div>
@@ -74,6 +74,31 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   padding: 1em;
+}
+
+input {
+  margin-top: 1rem;
+}
+
+input::file-selector-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* A similar green shade */
+  border: none;
+  color: white;
+  border-radius: 20px; /* Rounded edges */
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  outline: none;
+}
+
+input::file-selector-button:hover {
+  background-color: #45a049; /* A slightly darker green for hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow for hover */
+  transform: translateY(-2px); /* Slight raise effect */
 }
 
 .upload-section button {
