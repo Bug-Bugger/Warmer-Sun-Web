@@ -19,7 +19,10 @@ export default {
 <style scoped>
 .home {
     text-align: center;
-    margin-top: 100px;
+    /* margin-top: 100px; */
+    background-image: url('https://via.placeholder.com/150');
+    background-size: cover;
+    height: 100vh;
 }
 
 h1 {

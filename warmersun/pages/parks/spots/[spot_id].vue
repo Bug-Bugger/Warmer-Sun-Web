@@ -7,7 +7,7 @@
             <div class="activity-box">
             <h2>Activities History</h2>
             <div class="description">
-                <h1>Name</h1>
+                <h1>Group</h1>
                 <h1>Description</h1>
                 <h1>Verified?</h1>
             </div>
@@ -32,7 +32,7 @@
                 <h1>Points</h1>
             </div>
             <ul class="points-list">
-                <li class="points" :key="point.id" v-for="point in points">
+                <li @click="selectAction" class="points" :key="point.id" v-for="point in points">
                     <!-- <h3>{{point.name}}</h3> -->
                     <p>{{point.description}}</p>
                     <p>{{ point.point }}</p>
@@ -40,6 +40,17 @@
                     <img v-else src="../../../assets/xmark.svg" alt="Activity 1"> -->
                 </li>
             </ul>
+            
+            <!-- Form group -->
+            <div class="group">
+                <label class="group">Group:</label>
+                <div v-for="groupMember in groupMembers" class="group-members">
+                    <h1>hi</h1>
+                    <p>{{groupMember.name}}</p>
+                </div>
+                <input type="text" id="group" name="group">
+                <button @click="addMember">Add Member</button>
+            </div>
 
             <div class="Submit">
                 <p>Upload images of your actions!</p>
@@ -60,10 +71,10 @@ let spotId = route.params.spot_id
 console.log(spotId)
 
 const activities = [
-    { id: 1, name: 'Bob', description: 'Activity 1 description', verified: true },
-    { id: 2, name: 'Alice', description: 'Activity 2 description', verified: false },
-    { id: 3, name: 'Charlie', description: 'Activity 3 description', verified: true },
-    { id: 4, name: 'David', description: 'Activity 4 description', verified: false },
+    { id: 1, name: 'Group 1', description: 'Activity 1 description', verified: true },
+    { id: 2, name: 'Group 2', description: 'Activity 2 description', verified: false },
+    { id: 3, name: 'Group 3', description: 'Activity 3 description', verified: true },
+    { id: 4, name: 'Group 4', description: 'Activity 4 description', verified: false },
 ]
 
 const points = [
@@ -76,15 +87,34 @@ const points = [
 
 const files = []
 
+const actions = []
 
+const groupMembers = []
+
+let selected = false
 
 const submit = () => {
     // don't do this in production
     const file = document.getElementById('myFile').files
     console.log(file)
     files.push(file)
-    console.log(files)
+    // console.log(files)
 }
+
+const addMember = () => {
+    const member = document.getElementById('group').value
+    groupMembers.push({ name: member })
+    console.log(groupMembers)
+}
+
+const selectAction = (e) => {
+    selected = !selected
+    console.log(selected)
+    let click = e.target
+    console.log(click)
+    
+}
+
 </script>
 
 <style scoped>
@@ -99,6 +129,22 @@ const submit = () => {
 .wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+
+}
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.activity-des {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
     justify-content: space-around;
 
 }
@@ -144,6 +190,7 @@ const submit = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
     /* justify-content: space-between; */
 }
 

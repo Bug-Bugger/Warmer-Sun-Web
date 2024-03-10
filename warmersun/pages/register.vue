@@ -17,7 +17,7 @@
             <input type="password" id="password" name="password" placeholder="Password">
           </div>
           <div class="submit-btn">
-            <button type="submit">Register!</button>
+            <div @click="registerUser">Register!</div>
           </div>
           <div class="have-account">
               <p>Already have an account? <a href="/login">Login!</a></p>
@@ -27,10 +27,25 @@
     </section>
   </template>
   
-  <script>
-  export default {
-  
+  <script setup>
+  // import { useUserStore } from "../stores/userStore.ts"
+
+  // const userStore = useUserStore()
+
+  // const registerUser = () => {
+  //   const firstName = document.getElementById('first-name').value
+  //   const lastName = document.getElementById('last-name').value
+  //   const email = document.getElementById('email').value
+  //   const password = document.getElementById('password').value
+  //   const userName = firstName + ' ' + lastName
+
+  //   userStore.registerUser(userName, password)
+  // }
+
+  const registerUser = () => {
+    console.log('Registering user...')
   }
+ 
   </script>
   
   <style>
