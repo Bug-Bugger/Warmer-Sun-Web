@@ -23,7 +23,7 @@
         <l-popup>
           <h1>{{ spot.park }}</h1>
           <p>{{ spot.name }}</p>
-          <a :href="'/parks/spots/' + spot.id">More details</a>
+          <a :href="'/parks/spots/' + spot.id" style="font-size: small;">More details</a>
         </l-popup>
         </l-marker>
         </l-map>
