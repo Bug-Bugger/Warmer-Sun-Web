@@ -1,24 +1,28 @@
 <template>
+  <div class="box">
     <div class="profile">
-        <div class="profile-header">
-            <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
-            <h1 ref="username" class="name">{{ userStore.username }}</h1>
-            <p class="bio">Your Bio</p>
+      <div class="profile-header">
+        <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
+        <h1 ref="username" class="name">{{ userStore.username }}</h1>
+        <p class="bio">Your Bio</p>
+      </div>
+      <div class="profile-content">
+        <!-- Add your content here -->
+        <div class="content-wrapper">
+          <div class="contributions">
+            <h2>Contributions</h2>
+            <p>Number of contributions: 0</p>
+            <p>Total points: 0</p>
+          </div>
         </div>
-        <div class="profile-content">
-            <!-- Add your content here -->
-            <div class="content-wrapper">
-                <div class="contributions">
-                    <h2>Contributions</h2>
-                    <p>Number of contributions: 0</p>
-                    <p>Total points: 0</p>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-
+    <div class="list">
+      <li v-for="item in items">
+        {{ item.message }}
+      </li>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -38,10 +42,21 @@ onMounted(async () => {
 
 <style scoped>
 .profile {
-  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  padding: 20px;
+  box-shadow: rgb(5, 117, 16, 0.4) 5px 5px, rgba(5, 117, 16, 0.3) 10px 10px,
+    rgba(5, 117, 16, 0.2) 15px 15px, rgba(5, 117, 16, 0.1) 20px 20px,
+    rgba(5, 117, 16, 0.05) 25px 25px;
+  height: 500px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 2rem;
+  position: absolute;
+  left: 100px;
+  margin-top: 215px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -49,12 +64,11 @@ onMounted(async () => {
 .profile-header {
   text-align: center;
   margin-bottom: 20px;
-  background-color: #f0f8f4;
 }
 
 .avatar {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
 }
 
@@ -67,6 +81,23 @@ onMounted(async () => {
 .bio {
   font-size: 16px;
   color: #555;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list {
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  position: absolute;
+  left: 625px;
+  height: 500px;
+  width: 800px;
+  border: 1px solid black;
+  border-radius: 2rem;
+  margin-top: 215px;
 }
 
 /* Add your custom styles here */
