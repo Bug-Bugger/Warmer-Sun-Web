@@ -104,6 +104,7 @@ const submit = () => {
         }
     }).then((res) => {
         console.log(res)
+        return window.location.reload()
     })
     // const file = document.getElementById('myFile').files
     // console.log(file)

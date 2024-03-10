@@ -3,6 +3,7 @@
     <div class="profile">
       <div class="profile-header">
         <input type="file" id="file" ref="file" style="display: none" />
+        <img class="plus" srcset="../assets/plus.png" alt="Profile Picture" />
         <img @click="changeProfile" class="avatar" src="../assets/home.png" alt="Profile Picture" />
         <h1 ref="username" class="name">{{ userStore.username }}</h1>
         <p class="bio">Your Bio</p>
@@ -75,6 +76,12 @@ const getActions = async () => {
 .box {
     background: url("../assets/background.jpg") no-repeat center center fixed;
     height: 100vh;
+}
+
+.plus {
+    display: flex;
+    position: absolute;
+    transform: translateX(350%);
 }
 
 .profile {
