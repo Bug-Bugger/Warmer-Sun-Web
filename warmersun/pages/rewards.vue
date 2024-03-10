@@ -13,7 +13,7 @@
     </div>
     <div class="my-rewards">
       <h1>My Rewards</h1>
-      <p>Points: {{ points }}</p>
+      <p>Points: {{ userStore.points }}</p>
       <button @click="redeemReward">Redeem Reward</button>
       <div v-if="showReward">
         <h2>Congratulations!</h2>
@@ -24,7 +24,12 @@
 </template>
 
 <script>
+import { useUserStore } from "~/stores/userStore";
 export default {
+    setup() {
+        const userStore = useUserStore();
+        return { userStore };
+    },
   data() {
     return {
       points: 100, // Replace with actual points value

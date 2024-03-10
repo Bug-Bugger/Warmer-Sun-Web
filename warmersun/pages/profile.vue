@@ -11,15 +11,17 @@
         <div class="content-wrapper">
           <div class="contributions">
             <h2>Contributions</h2>
-            <p>Number of contributions: 0</p>
+            <p>Number of contributions: {{ userStore.actions.length }}</p>
             <p>Total points: {{ userStore.points }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="list">
+        <h1>All Actions done in the past</h1>
       <li v-for="item in userStore.actions">
-        {{ item.title }}
+        <p>{{ item.title }}</p>
+        <p>{{ item.time }}</p>
       </li>
     </div>
   </div>
@@ -98,6 +100,18 @@ onMounted(async () => {
   border: 1px solid black;
   border-radius: 2rem;
   margin-top: 215px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+li {
+    display: flex;
+    width: 75%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* Add your custom styles here */

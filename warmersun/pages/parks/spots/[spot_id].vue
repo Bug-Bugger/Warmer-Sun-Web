@@ -48,8 +48,8 @@
             </div> -->
 
             <div class="Submit">
-                <p>Upload images of your actions!</p>
-                <input type="file" id="myFile" name="filename" multiple>
+                <!-- <p>Upload images of your actions!</p> -->
+                <!-- <input type="file" id="myFile" name="filename" multiple> -->
                 <button @click="submit" >Submit!</button>
             </div>
         </div>
@@ -100,6 +100,7 @@ const submit = () => {
         }
     }).then((res) => {
         console.log(res)
+        return window.location.reload()
     })
     // const file = document.getElementById('myFile').files
     // console.log(file)
@@ -231,7 +232,14 @@ console.log(actions.value)
     border-bottom: 1px solid #000;
 }
 
+.Submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
 
+}
 
 /* img {
     width: 20px;
