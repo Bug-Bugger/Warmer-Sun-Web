@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules:[
     'nuxt3-leaflet',
+    "@pinia/nuxt",
   ],
   plugins: [
     '~/plugins/leaflet.ts',

@@ -28,23 +28,10 @@
   </template>
   
   <script setup>
-  // import { useUserStore } from "../stores/userStore.ts"
+  import { useUserStore } from '~/stores/userStore';
 
-  // const userStore = useUserStore()
-
-  // const registerUser = () => {
-  //   const firstName = document.getElementById('first-name').value
-  //   const lastName = document.getElementById('last-name').value
-  //   const email = document.getElementById('email').value
-  //   const password = document.getElementById('password').value
-  //   const userName = firstName + ' ' + lastName
-
-  //   userStore.registerUser(userName, password)
-  // }
-
-  const registerUser = () => {
-    console.log('Registering user...')
-  }
+  const userStore = useUserStore();
+  
  
   </script>
   
@@ -96,7 +83,7 @@
           width: 100%;
           outline: none;
       }
-      button {
+      .submit-btn {
           text-decoration: none;
     display: flex;
     flex-direction: row;
