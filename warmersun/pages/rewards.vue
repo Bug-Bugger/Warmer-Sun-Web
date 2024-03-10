@@ -45,10 +45,17 @@ export default {
       rewards: [
         {
           id: 1,
+<<<<<<< Updated upstream
           name: "Backpack",
           points: 100,
           img: backpack,
           description: "This is a beautiful backpack. (eco-friendly)",
+=======
+          name: "Reward 1",
+          points: 50,
+          img: "../assets/xmark.jpg",
+          description: "This is a description of Reward 1.",
+>>>>>>> Stashed changes
         },
         {
           id: 2,
@@ -113,11 +120,17 @@ export default {
   padding: 20px;
 }
 
+<<<<<<< Updated upstream
 h2{
   font-size: 3rem;
 }
 h3{
   font-size: 2rem;
+=======
+img {
+    height: 100px;
+    width: 100px;
+>>>>>>> Stashed changes
 }
 
 .general-awards {
