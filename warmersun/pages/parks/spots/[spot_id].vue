@@ -48,10 +48,14 @@
             </div> -->
 
             <div class="Submit">
-                <p>Upload images of your actions!</p>
-                <input type="file" id="myFile" name="filename" multiple>
-                <button @click="submit" >Submit!</button>
-            </div>
+        <!-- <p>Upload images of your actions!</p>
+        <label for="myFile" class="custom-file-upload">
+            Choose Files
+        </label>
+        <input type="file" id="myFile" name="filename" multiple>
+        <span>{{ selectedFileName }}</span> -->
+        <button @click="submit">Submit!</button>
+    </div>
         </div>
         </div>
 
@@ -150,6 +154,35 @@ console.log(actions.value)
     /* margin: 20px; */
 }
 
+h1, h2 {
+    /* Zero out default margins for a clean start */
+    margin: 0;
+    /* Add some vertical space between the title and subtitle */
+    padding: 0.2em 0;
+}
+
+h1 {
+    /* Large, standout size */
+    font-size: 3rem;
+    /* Slight letter spacing for a more refined look */
+    letter-spacing: 1px;
+    /* Bold weight */
+    font-weight: bold;
+    /* Color that fits with the overall theme */
+    color: #333;
+}
+
+h2 {
+    /* A size that complements the main title */
+    font-size: 2rem;
+    /* Regular weight for contrast */
+    font-weight: 400;
+    /* A subtler color than the main title */
+    color: #555;
+    /* Style consistent with other elements */
+    font-family: 'Arial', sans-serif;
+}
+
 .wrapper {
     display: flex;
     flex-direction: row;
@@ -232,19 +265,86 @@ console.log(actions.value)
 }
 
 
+.points-box {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff; /* Optional: change background color */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: add shadow for depth */
+    border-radius: 8px; /* Optional: rounded corners for the box */
+    margin: 20px; /* Spacing around the box */
+}
 
-/* img {
-    width: 20px;
-    height: 20px;
+.points-head {
+    margin-bottom: 1rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Darker text for better readability */
+}
 
-} */
+.select-action {
+    margin: 10px 0;
+}
 
-/* .activity-list li {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #000;
-    border-radius: 10px;
-} */
+.Submit {
+    margin-top: 20px;
+}
 
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+}
 
+input[type="file"] {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+/* Style to visually hide the actual file input and show only the label */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.custom-file-upload:hover {
+    background-color: #e8e8e8;
+}
 </style>
