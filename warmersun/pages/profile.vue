@@ -2,7 +2,7 @@
     <div class="profile">
         <div class="profile-header">
             <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
-            <h1 class="name">Your Name</h1>
+            <h1 ref="username" class="name">{{ username }}</h1>
             <p class="bio">Your Bio</p>
         </div>
         <div class="profile-content">
@@ -23,10 +23,14 @@
 import { useUserStore } from '~/stores/userStore';
 
 const userStore = useUserStore();
+let username = ref('');
 
-onMounted(() => {
+onMounted(async() => {
     console.log(userStore.user);
-    const user = userStore.getProfile();
+    const user = await userStore.getProfile();
+    username = user.username;
+    console.log(user);
+    console.log(user.username);
 });
 </script>
 

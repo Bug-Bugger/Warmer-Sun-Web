@@ -9,14 +9,19 @@ export const useUserStore = defineStore("user", {
 
     state: () => ({
         user: null,
-        token: null,
+        isLoggedIn: false,
         url: "http://34.162.44.216/api",
     }),
+    persist: [
+		{
+			storage: persistedState.sessionStorage,
+		},
+	],
 
     actions: {        
         async login(username: string, password: string) {
             try {
-                const response = await axios.post(`${url}/verifyusers`, {
+                const response = await axios.post(`${url}/users/verify`, {
                     username,
                     password,
                 },{
@@ -25,6 +30,16 @@ export const useUserStore = defineStore("user", {
                     }});
 
                 console.log(response.data);
+
+                if (response.data.verify === true) {
+                    this.user = response.data.user_id;
+                    console.log(this.user);
+                    this.isLoggedIn = true;
+                    const router = useRouter();
+                    router.push("/profile");
+                } else {
+                    alert("Invalid username or password")
+                }
                 // this.user = response.data.user;
                 // this.token = response.data.token;
                 // localStorage.setItem("token", this.token);
@@ -51,6 +66,7 @@ export const useUserStore = defineStore("user", {
                     }
                 });
                 this.user = response.data.user_id;
+                this.isLoggedIn = true;
                 console.log(response.data.user_id);
                 console.log(this.user);
                 const router = useRouter();
