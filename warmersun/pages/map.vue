@@ -15,14 +15,15 @@
           <l-marker
             v-if="gotLocation"
             :lat-lng="[userLocation.lat, userLocation.lng]"
-          ></l-marker>
+          ><l-popup><h1>Your Location</h1></l-popup></l-marker>
           <l-marker
             v-for="spot in spotLocation"
             :lat-lng="[spot.lat, spot.lng]"
           >
         <l-popup>
-          <h1>Spot</h1>
-          <p>Spot</p>
+          <h1>{{ spot.park }}</h1>
+          <p>{{ spot.name }}</p>
+          <a :href="'/parks/spots/' + spot.id">More details</a>
         </l-popup>
         </l-marker>
         </l-map>
@@ -130,6 +131,7 @@ export default {
         console.log(res.data.spots, "spot location");
         res.data.spots.forEach((spot) => {
           this.spotLocation.push({
+            id: spot.id,
             lat: spot.latitude,
             lng: spot.longitude,
             name: spot.name,
@@ -138,6 +140,7 @@ export default {
         });
         console.log(this.spotLocation, "spot location")
         console.log(this.spotLocation[0], "spot location lat")
+        console.log(this.spotLocation[0].id, "spot id")
       })
 
       ;
