@@ -178,10 +178,10 @@ p {
 
 @keyframes circle {
   0% {
-    transform: rotate(0deg) translate(-175px) rotate(0deg);
+    transform: rotate(0deg) translate(-200px) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg) translate(-175px) rotate(-360deg);
+    transform: rotate(360deg) translate(-200px) rotate(-360deg);
   }
 }
 img {
