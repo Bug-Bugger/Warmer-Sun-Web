@@ -45,7 +45,7 @@ export default {
 }
 h1 {
   font-size: 50px;
-  font-family: "Papyrus", Times, serif;
+  font-family: 'Courier New', monospace;
   /* margin-bottom: 20px; */
 }
 
@@ -62,11 +62,11 @@ p {
 }
 
 .quote-wrapper {
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
   position: relative;
-  left: 30px;
-  top: 150px;
+  left: 50px;
+  top: 120px;
 }
 
 .text {
@@ -83,7 +83,7 @@ p {
 
 .text p {
   height: 100%;
-  font-size: 30px;
+  font-size: 40px;
   line-height: 1.25;
   padding: 0;
   text-align: center;
