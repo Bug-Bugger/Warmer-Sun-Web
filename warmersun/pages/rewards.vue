@@ -108,8 +108,9 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background: url("../assets/background.jpg") no-repeat center center fixed;
   /* margin: 20px; */
-  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  margin-top: 110px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
 }
 

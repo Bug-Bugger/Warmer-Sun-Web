@@ -7,7 +7,7 @@
             <div class="activity-box">
             <h2>Activities History</h2>
             <div class="description">
-                <h1>Group</h1>
+                <h1>ID</h1>
                 <h1>Description</h1>
                 <h1>Verified?</h1>
             </div>
@@ -15,7 +15,8 @@
                 <li class="activity" ref="activities" :key="activity.id" v-for="activity in actions">
                     <div class="activity-des">
                         <h3>{{activity.id}}</h3>
-                    <p>{{activity.title}}</p>
+                        
+                    <p><span v-for="user in activity.users">{{ user.username }}, </span>{{activity.title}}</p>
                     </div>
                 
                     <img v-if="activity.is_verified" src="../../../assets/checkmark.svg" alt="Activity 1">
@@ -205,7 +206,7 @@ h2 {
     flex-direction: row;
     align-items: center;
     width: 50%;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
 
@@ -217,7 +218,7 @@ h2 {
 }
 
 .activity-box {
-    width:50%;
+    width:60%;
     background-color: white;
     border-radius: 0.5rem;
 }
@@ -242,7 +243,7 @@ h2 {
 }
 
 .points-box {
-    width:40%;
+    width:30%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -271,7 +272,7 @@ h2 {
 
 
 .points-box {
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
