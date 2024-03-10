@@ -28,18 +28,41 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useUserStore } from "~/stores/userStore";
+import axios from "axios";
 
 const userStore = useUserStore();
 let username = ref("");
+let points = ref(0);
+let actions = ref([]);
 
 onMounted(async () => {
   console.log(userStore.user);
   const user = await userStore.getProfile();
+  getPoints();
   username = user.username;
   console.log(userStore.points);
   console.log(user.username);
+
 });
+
+const getPoints = async () => {
+  const reponse = await axios.get(userStore.url + '/users/' + userStore.user).then((res) => {
+    console.log(res.data);
+    points.value = res.data.points;
+    console.log(points.value);
+  });
+};
+
+const getActions = async () => {
+  const response = await axios.get(userStore.url + '/users/' + userStore.user + '/action').then((res) => {
+    res.data.forEach((action) => {
+      actions.value.push(action);
+    });
+  });
+};
+
 </script>
 
 <style scoped>
