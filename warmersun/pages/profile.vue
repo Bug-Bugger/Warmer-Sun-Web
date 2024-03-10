@@ -17,17 +17,8 @@
             </div>
         </div>
     </div>
-    <div class="profile-content">
-      <!-- Add your content here -->
-      <div class="content-wrapper">
-        <div class="contributions">
-          <h2>Contributions</h2>
-          <p>Number of contributions: 0</p>
-          <p>Total points: 0</p>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
 </template>
 
 <script setup>
