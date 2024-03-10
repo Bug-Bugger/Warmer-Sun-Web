@@ -2,11 +2,11 @@
   <div id="reward">
     <div class="general-awards">
       <h2>Available Rewards</h2>
-      <ul class="tilesWrap">
+      <ul class="wrapper">
         <li v-for="reward in rewards" :key="reward.id">
-          {{ reward.name }} - {{ reward.points }} points
-          <img v-if="reward.img" :src="reward.img" alt="Reward Image" />
-          <p>{{ reward.description }}</p>
+          <h3>{{ reward.name }} - {{ reward.points }} points</h3>
+          <img v-if="reward.img" :src="reward.img" alt="Reward Image" style="width: 100%;height: 100%;"/>
+          <p style="font-size: 20px;">{{ reward.description }}</p>
           <button @click="redeemReward(reward)">Redeem</button>
         </li>
       </ul>
@@ -24,6 +24,14 @@
 </template>
 
 <script>
+import backpack from '../assets/backpack.jpg';
+import brownbottle from '../assets/BrownBottle.jpg';
+import notebook from '../assets/notebook.jpg';
+import pen from '../assets/pen.jpg';
+import pendant from '../assets/pendant.jpg';
+import cuteCat from '../assets/cat.png';
+
+
 export default {
   data() {
     return {
@@ -32,32 +40,47 @@ export default {
       rewards: [
         {
           id: 1,
-          name: "Reward 1",
-          points: 50,
-          img: "https://via.placeholder.com/150",
-          description: "This is a description of Reward 1.",
+          name: "Backpack",
+          points: 100,
+          img: backpack,
+          description: "This is a beautiful backpack. (eco-friendly)",
         },
         {
           id: 2,
-          name: "Reward 2",
-          points: 100,
-          img: "https://via.placeholder.com/150",
-          description: "This is a description of Reward 2.",
-        },
+          name: "Brown bottle",
+          points: 50,
+          img: brownbottle,
+          description: "This is brown bottle.",
+        },    
         {
           id: 3,
-          name: "Reward 3",
-          points: 150,
-          img: "https://via.placeholder.com/150",
-          description: "This is a description of Reward 3.",
+          name: "Cute Cat",
+          points: 9999999,
+          img: cuteCat,
+          description: "This is a very cute cat just for viewing. (not for sale)",
         },
         {
           id: 4,
-          name: "Reward 4",
+          name: "Notebook",
           points: 150,
-          img: "https://via.placeholder.com/150",
-          description: "This is a description of Reward 4.",
+          img: notebook,
+          description: "You can use it to take notes. (maybe)",
         },
+        {
+          id: 5,
+          name: "Pen",
+          points: 150,
+          img: pen,
+          description: "Johnson's pen?",
+        },
+        {
+          id: 6,
+          name: "pendant",
+          points: 150,
+          img: pendant,
+          description: "Frank's favorite pendant. (please don't buy or else Frank will be sad.)",
+        },
+        
       ],
     };
   },
@@ -85,28 +108,19 @@ export default {
   padding: 20px;
 }
 
+h2{
+  font-size: 3rem;
+}
+h3{
+  font-size: 2rem;
+}
+
 .general-awards {
-  width: 500px;
+  width: 1500px;
 }
 
 button {
   margin: 5px;
-}
-ul {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-ul li {
-  width: 200px;
-  height: 300px;
-  margin-bottom: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .show {
   display: block;
@@ -114,98 +128,26 @@ ul li {
 .hide {
   display: none;
 }
-.tilesWrap {
-  padding: 0;
-  margin: 50px auto;
-  list-style: none;
-  text-align: center;
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+	list-style: none;
+  justify-content: space-around;
 }
-.tilesWrap li {
-  display: inline-block;
-  width: 20%;
-  min-width: 200px;
-  max-width: 200px;
-  padding: 80px 20px 40px;
-  position: relative;
-  vertical-align: top;
-  margin: 10px;
-  font-family: "helvetica", san-serif;
-  min-height: 25vh;
-  background: #262a2b;
-  border: 1px solid #252727;
-  text-align: left;
+
+
+li {
+  border: solid 1px black;
+  width: 400px;
+  margin-top: 40px;
+  justify-content: space-evenly;
+	display: flex;
+  flex-direction: column;
+	align-items: center;
+	padding: 1.5rem;
+	border-radius: 1rem;
 }
-.tilesWrap li h2 {
-  font-size: 114px;
-  margin: 0;
-  position: absolute;
-  opacity: 0.2;
-  top: 50px;
-  right: 10px;
-  transition: all 0.3s ease-in-out;
-}
-.tilesWrap li h3 {
-  font-size: 20px;
-  color: #b7b7b7;
-  margin-bottom: 5px;
-}
-.tilesWrap li p {
-  font-size: 16px;
-  line-height: 18px;
-  color: #b7b7b7;
-  margin-top: 5px;
-}
-.tilesWrap li button {
-  background: transparent;
-  border: 1px solid #b7b7b7;
-  padding: 10px 20px;
-  color: #b7b7b7;
-  border-radius: 3px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  transform: translateY(-40px);
-  opacity: 0;
-  cursor: pointer;
-  overflow: hidden;
-}
-.tilesWrap li:before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  z-index: -1;
-  background: #fff;
-  transform: skew(2deg, 2deg);
-}
-.tilesWrap li:after {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(255, 255, 255, 0.02);
-}
-.tilesWrap li:nth-child(1):before {
-  background: #c9ffbf;
-  background: -webkit-linear-gradient(to right, #ffafbd, #c9ffbf);
-  background: linear-gradient(to right, #ffafbd, #c9ffbf);
-}
-.tilesWrap li:nth-child(2):before {
-  background: #f2709c;
-  background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
-  background: linear-gradient(to right, #ff9472, #f2709c);
-}
-.tilesWrap li:nth-child(3):before {
-  background: #c21500;
-  background: -webkit-linear-gradient(to right, #ffc500, #c21500);
-  background: linear-gradient(to right, #ffc500, #c21500);
-}
-.tilesWrap li:nth-child(4):before {
-  background: #fc354c;
-  background: -webkit-linear-gradient(to right, #0abfbc, #fc354c);
-  background: linear-gradient(to right, #0abfbc, #fc354c);
-}
+
 </style>

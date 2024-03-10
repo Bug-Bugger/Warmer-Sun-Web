@@ -11,8 +11,8 @@
         <div class="content-wrapper">
           <div class="contributions">
             <h2>Contributions</h2>
-            <p>Number of contributions: 0</p>
-            <p>Total points: 0</p>
+            <p>Number of contributions: 1</p>
+            <p ref="points">Total points: 24</p>
           </div>
         </div>
       </div>
@@ -26,18 +26,39 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useUserStore } from "~/stores/userStore";
+import axios from "axios";
 
 const userStore = useUserStore();
 let username = ref("");
+let points = ref(0);
+let actions = ref([]);
 
 onMounted(async () => {
   console.log(userStore.user);
   const user = await userStore.getProfile();
+  getPoints();
   username = user.username;
   console.log(user);
   console.log(user.username);
+
 });
+
+const getPoints = async () => {
+  const reponse = await axios.get(userStore.url + '/users/' + userStore.user).then((res) => {
+    console.log(res.data);
+    points.value = res.data.points;
+    console.log(points.value);
+  });
+};
+
+const getActions = async () => {
+  const response = await axios.get(userStore.url + '/users/' + userStore.user + '/action').then((res) => {
+    res.data.
+  });
+};
+
 </script>
 
 <style scoped>
