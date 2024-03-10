@@ -67,7 +67,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 75vh;
+          height: 100vh;
       }
       .login-form {
           /* display: flex;
@@ -131,3 +131,5 @@
           /* color: aqua; */
       /* } */
   </style>
+
+  

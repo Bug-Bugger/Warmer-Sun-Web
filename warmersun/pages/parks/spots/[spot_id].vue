@@ -12,13 +12,13 @@
                 <h1>Verified?</h1>
             </div>
             <ul class="activity-list">
-                <li class="activity" :key="activity.id" v-for="activity in activities">
+                <li class="activity" ref="activities" :key="activity.id" v-for="activity in actions">
                     <div class="activity-des">
-                        <h3>{{activity.name}}</h3>
-                    <p>{{activity.description}}</p>
+                        <h3>{{activity.id}}</h3>
+                    <p>{{activity.title}}</p>
                     </div>
                 
-                    <img v-if="activity.verified" src="../../../assets/checkmark.svg" alt="Activity 1">
+                    <img v-if="activity.is_verified" src="../../../assets/checkmark.svg" alt="Activity 1">
                     <img v-else src="../../../assets/xmark.svg" alt="Activity 1">
                 </li>
             </ul>
@@ -27,30 +27,25 @@
         <div class="points-box">
             <h2 class="points-head">Points Category</h2>
             <p>Please select the actions you have accomplished</p>
-            <div class="description">
+            <!-- <div class="description">
                 <h1>Description</h1>
                 <h1>Points</h1>
-            </div>
-            <ul class="points-list">
-                <li @click="selectAction" class="points" :key="point.id" v-for="point in points">
-                    <!-- <h3>{{point.name}}</h3> -->
-                    <p>{{point.description}}</p>
-                    <p>{{ point.point }}</p>
-                    <!-- <img v-if="point.verified" src="../../../assets/checkmark.svg" alt="Activity 1">
-                    <img v-else src="../../../assets/xmark.svg" alt="Activity 1"> -->
-                </li>
-            </ul>
+            </div> -->
+            <label for="cars">Choose an action:</label>
+
+<select v-model="awardPoints" name="cars" id="cars">
+  <option v-for="point in categories" :key="point.name" :value="[point.name, point.point]">{{ point.name }}, Points: {{ point.point }}</option>
+</select> 
             
             <!-- Form group -->
-            <div class="group">
+            <!-- <div class="group">
                 <label class="group">Group:</label>
-                <div v-for="groupMember in groupMembers" class="group-members">
-                    <h1>hi</h1>
+                <div ref="groupMembers" v-for="groupMember in group" :key="groupMember.name" class="group-members">
                     <p>{{groupMember.name}}</p>
                 </div>
-                <input type="text" id="group" name="group">
+                <input ref="member" type="text" id="group" name="group">
                 <button @click="addMember">Add Member</button>
-            </div>
+            </div> -->
 
             <div class="Submit">
                 <p>Upload images of your actions!</p>
@@ -65,56 +60,82 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useUserStore } from '~/stores/userStore';
+import axios from 'axios'
+
 const route = useRoute()
 let spotId = route.params.spot_id
+const userStore = useUserStore()
+
+let awardPoints = ref([])
+let member = ref('')
 
 console.log(spotId)
 
-const activities = [
-    { id: 1, name: 'Group 1', description: 'Activity 1 description', verified: true },
-    { id: 2, name: 'Group 2', description: 'Activity 2 description', verified: false },
-    { id: 3, name: 'Group 3', description: 'Activity 3 description', verified: true },
-    { id: 4, name: 'Group 4', description: 'Activity 4 description', verified: false },
-]
+let activities = ref([])
+let categories = ref([])
 
-const points = [
-    { id: 1, name: 'Bob', description: 'Activity 1 description', point: 100 },
-    { id: 2, name: 'Alice', description: 'Activity 2 description', point: 200 },
-    { id: 3, name: 'Charlie', description: 'Activity 3 description', point: 300 },
-    { id: 4, name: 'David', description: 'Activity 4 description', point: 400 },
-
-]
 
 const files = []
 
-const actions = []
+const actions = ref([])
 
-const groupMembers = []
+const group = ref([])
 
 let selected = false
 
 const submit = () => {
     // don't do this in production
-    const file = document.getElementById('myFile').files
-    console.log(file)
-    files.push(file)
-    // console.log(files)
-    console.log(groupMembers)
+    console.log(awardPoints.value, group.value)
+    const response = axios.post(userStore.url + `/spot/${spotId}/action`, {
+        title: awardPoints.value[0],
+        description: awardPoints.value[0],
+        users_name: [userStore.username],
+        categories: [awardPoints.value[0]],
+        minute_duration: 90
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        console.log(res)
+        return window.location.reload()
+    })
+    // const file = document.getElementById('myFile').files
+    // console.log(file)
+    // files.push(file)
+    // // console.log(files)
+    // console.log(groupMembers)
 }
 
 const addMember = () => {
+    console.log("sdcsdc")
     const member = document.getElementById('group').value
-    groupMembers.push({ name: member })
-    console.log(groupMembers)
+    group.value.push({ name: member })
+    // console.log(groupMembers)
 }
 
-const selectAction = (e) => {
-    selected = !selected
-    console.log(selected)
-    let click = e.target
-    console.log(click)
-    
+
+const getActions =  async() => {
+    const response = await axios.get(userStore.url + `/spot/${spotId}/action`).then((res) => {
+        actions.value = res.data.actions
+        console.log(res.data.actions, "actions")
+    })
 }
+
+const getCategories =  async() => {
+    const response = await axios.get(userStore.url + `/category`).then((res) => {
+        categories.value = res.data.categories
+        console.log(res.data.categories, "actions")
+    })
+}
+onMounted(() => {
+    getActions()
+    getCategories()
+})
+
+console.log(actions.value)
 
 
 </script>
@@ -128,6 +149,35 @@ const selectAction = (e) => {
     flex-direction: column;
     justify-content: space-around;
     /* margin: 20px; */
+}
+
+h1, h2 {
+    /* Zero out default margins for a clean start */
+    margin: 0;
+    /* Add some vertical space between the title and subtitle */
+    padding: 0.2em 0;
+}
+
+h1 {
+    /* Large, standout size */
+    font-size: 3rem;
+    /* Slight letter spacing for a more refined look */
+    letter-spacing: 1px;
+    /* Bold weight */
+    font-weight: bold;
+    /* Color that fits with the overall theme */
+    color: #333;
+}
+
+h2 {
+    /* A size that complements the main title */
+    font-size: 2rem;
+    /* Regular weight for contrast */
+    font-weight: 400;
+    /* A subtler color than the main title */
+    color: #555;
+    /* Style consistent with other elements */
+    font-family: 'Arial', sans-serif;
 }
 
 .wrapper {
@@ -185,6 +235,10 @@ const selectAction = (e) => {
 
 .points-box {
     width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
 }
 
 .points-list {

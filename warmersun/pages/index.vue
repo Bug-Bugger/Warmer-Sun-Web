@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <div class="home"> 
     <div class="mainpage">
       <h1 class="header">Welcome to Warmer Sun!</h1>
-      <div class="quote-wrapper">
+      <div class="quote-wrapper">                
         <img src="../assets/earth.png" class="circle" alt="" />
         <blockquote class="text">
           <p>
@@ -35,7 +35,7 @@ export default {
 .home {
   background-size: cover;
   background-position: center;
-  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  margin-top: 110px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
   text-align: center;
   /* margin-top: 100px; */
@@ -163,7 +163,7 @@ p {
   opacity: 0.9;
 }
 .circle {
-  background-image: url("../assets/recycle.png");
+  background-image: url("../assets/recycle.jpg");
   width: 50px;
   height: 50px;
   border-radius: 50%;
