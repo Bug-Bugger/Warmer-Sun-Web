@@ -6,8 +6,7 @@
         <img src="../assets/earth.png" class="circle" alt="" />
         <blockquote class="text">
           <p>
-            Join us in making a positive impact on our parks and the
-            environment.
+            Discover, Engage, Renew: Volunteer for a Smart, Clean City
           </p>
           <footer>– Worseliba</footer>
         </blockquote>
