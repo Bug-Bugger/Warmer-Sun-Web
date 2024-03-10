@@ -99,6 +99,7 @@ const submit = () => {
     console.log(file)
     files.push(file)
     // console.log(files)
+    console.log(groupMembers)
 }
 
 const addMember = () => {
@@ -115,10 +116,13 @@ const selectAction = (e) => {
     
 }
 
+
 </script>
 
 <style scoped>
 #spot {
+    margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  padding: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
