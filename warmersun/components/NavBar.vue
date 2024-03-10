@@ -40,7 +40,7 @@ nav {
   overflow: hidden;
   position: fixed;
   z-index: 1001;
-  height: 8.5rem;
+  height: 7rem;
   width: 100%;
   top: 0;
   left: 0;
@@ -56,10 +56,10 @@ ul {
 .linkmap,
 .linkrewards,
 .linkprofile {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .linklogin {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 a {
   font-size: 2rem;

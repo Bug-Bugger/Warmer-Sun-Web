@@ -83,7 +83,7 @@ input {
 input::file-selector-button {
   cursor: pointer;
   padding: 10px 20px;
-  background-color: #4CAF50; /* A similar green shade */
+  background-color: #459da0; /* A similar green shade */
   border: none;
   color: white;
   border-radius: 20px; /* Rounded edges */
@@ -96,7 +96,7 @@ input::file-selector-button {
 }
 
 input::file-selector-button:hover {
-  background-color: #45a049; /* A slightly darker green for hover */
+  background-color: #458ca0; /* A slightly darker green for hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow for hover */
   transform: translateY(-2px); /* Slight raise effect */
 }
@@ -104,7 +104,7 @@ input::file-selector-button:hover {
 .upload-section button {
   cursor: pointer;
   padding: 10px 20px;
-  background-color: #4CAF50; /* A similar green shade */
+  background-color: #459da0; /* A similar green shade */
   border: none;
   color: white;
   border-radius: 20px; /* Rounded edges */
@@ -117,7 +117,7 @@ input::file-selector-button:hover {
 }
 
 .upload-section button:hover {
-  background-color: #45a049; /* A slightly darker green for hover */
+  background-color: #458ca0; /* A slightly darker green for hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow for hover */
   transform: translateY(-2px); /* Slight raise effect */
 }
