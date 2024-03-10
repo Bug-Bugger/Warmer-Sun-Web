@@ -2,7 +2,7 @@
   <div>
     <nav style="background-color: rgba(94, 186, 242)">
       <ul>
-        <li class="linkhome"><a class="link" href="/">Home</a></li>
+        <li class="linkhome"><a none class="link" href="/">Home</a></li>
         <li class="linkprofile">
           <a class="link" href="/profile">Profile</a>
         </li>
@@ -62,6 +62,7 @@ ul {
   margin-bottom: 50px;
 }
 a {
+  text-decoration: none;
   font-size: 2rem;
   font-family: "Fredoka One", cursive;
   box-shadow: inset 0 0 0 0 #54b3d6;
@@ -70,6 +71,11 @@ a {
   padding: 0 0.25rem;
   transition: color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
+
+.save a {
+  text-decoration: none;
+}
+
 .link:hover {
   box-shadow: inset 1000px 0 0 0 #54b3d6;
   color: white;
