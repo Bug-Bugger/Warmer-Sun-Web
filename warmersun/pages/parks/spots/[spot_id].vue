@@ -27,25 +27,25 @@
         <div class="points-box">
             <h2 class="points-head">Points Category</h2>
             <p>Please select the actions you have accomplished</p>
-            <div class="description">
+            <!-- <div class="description">
                 <h1>Description</h1>
                 <h1>Points</h1>
-            </div>
+            </div> -->
             <label for="cars">Choose an action:</label>
 
 <select v-model="awardPoints" name="cars" id="cars">
-  <option v-for="point in points" :key="point.name" :value="point.point">{{ point.description }}, Points: {{ point.point }}</option>
+  <option v-for="point in categories" :key="point.name" :value="[point.name, point.point]">{{ point.name }}, Points: {{ point.point }}</option>
 </select> 
             
             <!-- Form group -->
-            <div class="group">
+            <!-- <div class="group">
                 <label class="group">Group:</label>
                 <div ref="groupMembers" v-for="groupMember in group" :key="groupMember.name" class="group-members">
                     <p>{{groupMember.name}}</p>
                 </div>
                 <input ref="member" type="text" id="group" name="group">
                 <button @click="addMember">Add Member</button>
-            </div>
+            </div> -->
 
             <div class="Submit">
                 <p>Upload images of your actions!</p>
@@ -68,20 +68,14 @@ const route = useRoute()
 let spotId = route.params.spot_id
 const userStore = useUserStore()
 
-let awardPoints = ref(100)
+let awardPoints = ref([])
 let member = ref('')
 
 console.log(spotId)
 
 let activities = ref([])
+let categories = ref([])
 
-const points = [
-    { id: 1, name: 'Bob', description: 'Activity 1 description', point: 100 },
-    { id: 2, name: 'Alice', description: 'Activity 2 description', point: 200 },
-    { id: 3, name: 'Charlie', description: 'Activity 3 description', point: 300 },
-    { id: 4, name: 'David', description: 'Activity 4 description', point: 400 },
-
-]
 
 const files = []
 
@@ -93,11 +87,25 @@ let selected = false
 
 const submit = () => {
     // don't do this in production
-    const file = document.getElementById('myFile').files
-    console.log(file)
-    files.push(file)
-    // console.log(files)
-    console.log(groupMembers)
+    console.log(awardPoints.value, group.value)
+    const response = axios.post(userStore.url + `/spot/${spotId}/action`, {
+        title: awardPoints.value[0],
+        description: awardPoints.value[0],
+        users_name: group.value,
+        categories: [awardPoints.value[0]],
+        minute_duration: 90
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        console.log(res)
+    })
+    // const file = document.getElementById('myFile').files
+    // console.log(file)
+    // files.push(file)
+    // // console.log(files)
+    // console.log(groupMembers)
 }
 
 const addMember = () => {
@@ -115,8 +123,15 @@ const getActions =  async() => {
     })
 }
 
+const getCategories =  async() => {
+    const response = await axios.get(userStore.url + `/category`).then((res) => {
+        categories.value = res.data.categories
+        console.log(res.data.categories, "actions")
+    })
+}
 onMounted(() => {
     getActions()
+    getCategories()
 })
 
 console.log(actions.value)
@@ -190,6 +205,10 @@ console.log(actions.value)
 
 .points-box {
     width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
 }
 
 .points-list {
