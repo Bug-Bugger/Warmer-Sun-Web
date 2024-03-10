@@ -1,13 +1,12 @@
 <template>
-  <div class="home">
+  <div class="home"> 
     <div class="mainpage">
       <h1 class="header">Welcome to Warmer Sun!</h1>
-      <div class="quote-wrapper">
+      <div class="quote-wrapper">                
         <img src="../assets/earth.png" class="circle" alt="" />
         <blockquote class="text">
           <p>
-            Join us in making a positive impact on our parks and the
-            environment.
+            Discover, Engage, Renew: Volunteer for a Smart, Clean City
           </p>
           <footer>– Worseliba</footer>
         </blockquote>
@@ -35,7 +34,7 @@ export default {
 .home {
   background-size: cover;
   background-position: center;
-  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  margin-top: 110px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
   text-align: center;
   /* margin-top: 100px; */
@@ -46,7 +45,7 @@ export default {
 }
 h1 {
   font-size: 50px;
-  font-family: "Papyrus", Times, serif;
+  font-family: 'Courier New', monospace;
   /* margin-bottom: 20px; */
 }
 
@@ -63,11 +62,11 @@ p {
 }
 
 .quote-wrapper {
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
   position: relative;
-  left: 30px;
-  top: 150px;
+  left: 50px;
+  top: 120px;
 }
 
 .text {
@@ -84,7 +83,7 @@ p {
 
 .text p {
   height: 100%;
-  font-size: 30px;
+  font-size: 40px;
   line-height: 1.25;
   padding: 0;
   text-align: center;
@@ -163,7 +162,7 @@ p {
   opacity: 0.9;
 }
 .circle {
-  background-image: url("../assets/recycle.png");
+  background-image: url("../assets/recycle.jpg");
   width: 50px;
   height: 50px;
   border-radius: 50%;

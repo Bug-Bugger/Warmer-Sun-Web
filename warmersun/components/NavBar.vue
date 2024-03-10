@@ -2,7 +2,7 @@
   <div>
     <nav style="background-color: rgba(94, 186, 242)">
       <ul>
-        <li class="linkhome"><a class="link" href="/">Home</a></li>
+        <li class="linkhome"><a none class="link" href="/">Home</a></li>
         <li class="linkprofile">
           <a class="link" href="/profile">Profile</a>
         </li>
@@ -40,7 +40,7 @@ nav {
   overflow: hidden;
   position: fixed;
   z-index: 1001;
-  height: 8.5rem;
+  height: 7rem;
   width: 100%;
   top: 0;
   left: 0;
@@ -56,20 +56,27 @@ ul {
 .linkmap,
 .linkrewards,
 .linkprofile {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .linklogin {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 a {
+  text-decoration: none;
   font-size: 2rem;
   font-family: "Fredoka One", cursive;
   box-shadow: inset 0 0 0 0 #54b3d6;
   color: black;
   margin: 0 -0.25rem;
+
   padding: 0 0.25rem;
   transition: color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
+
+.save a {
+  text-decoration: none;
+}
+
 .link:hover {
   box-shadow: inset 1000px 0 0 0 #54b3d6;
   color: white;

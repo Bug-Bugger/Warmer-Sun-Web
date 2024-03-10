@@ -54,10 +54,10 @@ export default {
 }
 .button {
   position: relative;
-  margin-top: 4rem;
+  margin-top: 3.3rem;
   margin-left: 2rem;
   width: 190px;
-  height: 4rem;
+  height: 3.5rem;
   box-sizing: border-box;
   text-decoration: none;
   border: solid 3px #000;

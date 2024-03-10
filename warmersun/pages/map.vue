@@ -23,7 +23,7 @@
         <l-popup>
           <h1>{{ spot.park }}</h1>
           <p>{{ spot.name }}</p>
-          <a :href="'/parks/spots/' + spot.id" style="font-size: small;">More details</a>
+          <a style="font-size: small;" :href="'/parks/spots/' + spot.id">More details</a>
         </l-popup>
         </l-marker>
         </l-map>
@@ -151,10 +151,30 @@ export default {
 </script>
 
   <<style scoped>
-    .getLocation {
-        position: absolute;
-        top: 500px;
-        left: 50px;
-        z-index: 1000;
-    }
-  </style>
+.getLocation {
+    position: absolute;
+    top: 95%; /* Adjust as necessary for proper alignment */
+    left: 5%; /* Adjust as necessary for proper alignment */
+    transform: translate(-50%, -50%); /* Centers the button */
+    z-index: 1000;
+}
+
+.getLocation button {
+    background-color: #04AA6D; /* A pleasant green background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.getLocation button:hover {
+    background-color: #037f58; /* A darker shade of button color for hover state */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+</style>
