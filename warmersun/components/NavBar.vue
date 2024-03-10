@@ -68,6 +68,7 @@ a {
   box-shadow: inset 0 0 0 0 #54b3d6;
   color: black;
   margin: 0 -0.25rem;
+
   padding: 0 0.25rem;
   transition: color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
