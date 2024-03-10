@@ -1,39 +1,73 @@
 <template>
-    <div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/pollution">Pollution Analysis</a></li>
-                <li><a href="/map">Map</a></li>
-                <li><a href="/rewards">Rewards</a></li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </nav>
-    </div> 
+  <div>
+    <nav style="background-color: rgba(94, 186, 242, 0.9)">
+      <ul>
+        <li class="linkhome"><a class="link" href="/">Home</a></li>
+        <li class="linkprofile">
+          <a class="link" href="/profile">Profile</a>
+        </li>
+        <li class="linkpollution">
+          <a class="link" href="/pollution">Pollution Analysis</a>
+        </li>
+        <li class="linkmap"><a class="link" href="/map">Map</a></li>
+        <li class="linkrewards"><a class="link" href="/rewards">Rewards</a></li>
+        <li class="linklogin">
+          <Button class="save"><a href="/login">Login</a></Button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-    nav {
-        background-color: #f8f9fa;
-        padding: 1rem;
-    }
-    ul {
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-    }
-    a {
-        text-decoration: none;
-        color: #000;
-    }
-    a:hover {
-        color: #007bff;
-    }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+nav {
+  border-radius: 5px 5px 35px 35px;
+  text-align: center;
+  background-color: #3eb489;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1001;
+  height: 8.5rem;
+  width: 100%;
+}
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+.linkhome,
+.linkpollution,
+.linkmap,
+.linkrewards,
+.linkprofile {
+  margin-top: 50px;
+}
+.linklogin {
+  margin-bottom: 70px;
+}
+a {
+  font-size: 2rem;
+  font-family: "Fredoka One", cursive;
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: black;
+  margin: 0 -0.25rem;
+  padding: 0 0.25rem;
+  transition: color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+}
+.link:hover {
+  box-shadow: inset 1000px 0 0 0 #54b3d6;
+  color: white;
+}
+.save {
+  size: 20px;
+}
 </style>
