@@ -57,7 +57,9 @@ const getPoints = async () => {
 
 const getActions = async () => {
   const response = await axios.get(userStore.url + '/users/' + userStore.user + '/action').then((res) => {
-    res.data.
+    res.data.forEach((action) => {
+      actions.value.push(action);
+    });
   });
 };
 
