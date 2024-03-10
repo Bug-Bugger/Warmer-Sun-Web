@@ -4,9 +4,11 @@ export default defineNuxtConfig({
   modules:[
     'nuxt3-leaflet',
     "@pinia/nuxt",
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   plugins: [
     '~/plugins/leaflet.ts',
+    
   ],
   css: ['leaflet/dist/leaflet.css'],
 })

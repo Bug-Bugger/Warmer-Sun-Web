@@ -19,11 +19,15 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Profile',
-    // Add your data, methods, and computed properties here
-}
+<script setup>
+import { useUserStore } from '~/stores/userStore';
+
+const userStore = useUserStore();
+
+onMounted(() => {
+    console.log(userStore.user);
+    const user = userStore.getProfile();
+});
 </script>
 
 <style scoped>

@@ -4,13 +4,13 @@
       <div class="login-content">
         <h2>Welcome Back!</h2>
         <div class="input-group">
-          <input type="email" id="email" name="email" placeholder="Email">
+          <input v-model="username" type="username" id="username" name="username" placeholder="Username">
         </div>
         <div class="input-group">
-          <input type="password" id="password" name="password" placeholder="Password">
+          <input v-model="password" type="password" id="password" name="password" placeholder="Password">
         </div>
         <div class="submit-btn">
-          <button type="submit">Login!</button>
+          <div @click="login" type="submit">Login!</div>
         </div>
         <div class="have-account">
             <p>Don't have an account? <a href="/register">Register!</a></p>
@@ -20,10 +20,21 @@
   </section>
 </template>
 
-<script>
-export default {
+<script setup>
+import { useUserStore } from '~/stores/userStore';
+import { ref } from 'vue';
 
-}
+const userStore = useUserStore();
+
+const username = ref('');
+const password = ref('');
+
+console.log(username, password);
+
+const login = () => {
+  userStore.login(username.value, password.value);
+};
+
 </script>
 
 <style>

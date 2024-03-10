@@ -14,15 +14,20 @@ export const useUserStore = defineStore("user", {
     }),
 
     actions: {        
-        async login(email: string, password: string) {
+        async login(username: string, password: string) {
             try {
-                const response = await axios.post("/api/auth/login", {
-                    email,
+                const response = await axios.post(`${url}/verifyusers`, {
+                    username,
                     password,
-                });
-                this.user = response.data.user;
-                this.token = response.data.token;
-                localStorage.setItem("token", this.token);
+                },{
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }});
+
+                console.log(response.data);
+                // this.user = response.data.user;
+                // this.token = response.data.token;
+                // localStorage.setItem("token", this.token);
                 return response.data;
             } catch (error) {
                 return error.response.data;
@@ -45,9 +50,24 @@ export const useUserStore = defineStore("user", {
                         'Content-Type': 'application/json',
                     }
                 });
-                this.user = response.data.user;
-                console.log(response.data);
+                this.user = response.data.user_id;
+                console.log(response.data.user_id);
                 console.log(this.user);
+                const router = useRouter();
+                router.push("/profile");
+            } catch (error) {
+                return error.response ? error.response.data : error;
+            }
+        },
+
+        async getProfile() {
+            try {
+                const response = await axios.get(`${url}/users/${this.user}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                console.log(response.data);
                 return response.data;
             } catch (error) {
                 return error.response ? error.response.data : error;
