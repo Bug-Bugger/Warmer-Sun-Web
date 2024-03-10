@@ -57,19 +57,43 @@ export default {
   },
   methods: {
     async getUserPosition() {
-      // check if API is supported
-      if (navigator.geolocation) {
-        // get  geolocation
-        navigator.geolocation.getCurrentPosition((pos) => {
-          // set user location
-          this.userLocation = {
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude,
-          };
-          console.log(this.userLocation);
-        });
-      }
-    },
+  // Check if a location is stored in localStorage
+  const storedLocation = localStorage.getItem("userLocation");
+  if (storedLocation){
+    this.userLocation = JSON.parse(storedLocation);
+    return;
+  }
+
+  // check if API is supported
+  if (navigator.geolocation) {
+    // get  geolocation
+    navigator.geolocation.getCurrentPosition((pos) => {
+      // set user location
+      this.userLocation = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      };
+      localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+    }, () => {
+      // if user denies location
+      alert("Please enable location");
+      this.userLocation = {
+        lat: 42.454323,
+        lng: -76.475266,
+      };
+      localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+    });
+  }
+  else {
+    // if API is not supported
+    alert("Geolocation is not supported by this browser.");
+    this.userLocation = {
+      lat: 42.454323,
+      lng: -76.475266,
+    };
+    localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+  }
+},
 
     userLocationMarker() {
       console.log(this.userLocation, "user location");
