@@ -1,9 +1,21 @@
 <template>
-  <div class="profile">
-    <div class="profile-header">
-      <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
-      <h1 ref="username" class="name">{{ username }}</h1>
-      <p class="bio">Your Bio</p>
+    <div class="profile">
+        <div class="profile-header">
+            <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
+            <h1 ref="username" class="name">{{ userStore.username }}</h1>
+            <p class="bio">Your Bio</p>
+        </div>
+        <div class="profile-content">
+            <!-- Add your content here -->
+            <div class="content-wrapper">
+                <div class="contributions">
+                    <h2>Contributions</h2>
+                    <p>Number of contributions: 0</p>
+                    <p>Total points: 0</p>
+
+                </div>
+            </div>
+        </div>
     </div>
     <div class="profile-content">
       <!-- Add your content here -->

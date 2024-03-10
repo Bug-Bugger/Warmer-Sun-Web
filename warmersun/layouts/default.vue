@@ -1,7 +1,7 @@
 <template>
     <div>
       <NavBar/>
-      <NuxtPage/>
+      <NuxtPage class="page"/>
     </div>
   </template>
   
@@ -10,3 +10,9 @@
 import "leaflet-geosearch/dist/geosearch.css";
   
   </script>
+
+  <style scoped>
+  .page {
+    margin-top: 60px;
+  }
+  </style>
