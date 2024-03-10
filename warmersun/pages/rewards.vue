@@ -138,8 +138,27 @@ img {
 }
 
 button {
-  margin: 5px;
+  padding: 10px 15px; /* Increased padding for better spacing */
+  font-size: 1rem; /* Standard font size for readability */
+  color: white; /* Text color */
+  background: linear-gradient(45deg, #5f2c82, #49a09d); /* Color gradient for a modern look */
+  border: none; /* Remove the border */
+  border-radius: 20px; /* Rounded borders for a softer look */
+  cursor: pointer; /* Change cursor to pointer to indicate this is a clickable item */
+  transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s; /* Smooth transition for interactions */
+  outline: none; /* Remove the outline to keep the design clean */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Box-shadow for depth */
 }
+
+button:hover {
+  background: linear-gradient(45deg, #49a09d, #5f2c82); /* Invert the gradient on hover for an interactive effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Increase box-shadow size on hover */
+}
+
+button:active {
+  transform: translateY(2px); /* Move the button down slightly when clicked */
+}
+
 .show {
   display: block;
 }
