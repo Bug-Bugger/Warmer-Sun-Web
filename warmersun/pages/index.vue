@@ -33,6 +33,10 @@ export default {
   box-sizing: border-box;
 }
 .home {
+  background-size: cover;
+  background-position: center;
+  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  padding: 20px;
   text-align: center;
   /* margin-top: 100px; */
   background-image: url("../assets/city.jpg");

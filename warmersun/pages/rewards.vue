@@ -1,88 +1,111 @@
 <template>
-    <div id="reward">
-        <div>
-            <h2>Available Rewards</h2>
-            <ul>
-                <li v-for="reward in rewards" :key="reward.id">
-                    {{ reward.name }} - {{ reward.points }} points
-                    <img v-if="reward.img" :src="reward.img" alt="Reward Image" />
-                    <p>{{ reward.description }}</p>
-                    <button @click="redeemReward(reward)">Redeem</button>
-                </li>
-            </ul>
-        </div>
-        <div class="my-rewards">
-            <h1>My Rewards</h1>
-            <p>Points: {{ points }}</p>
-            <button @click="redeemReward">Redeem Reward</button>
-            <div v-if="showReward">
-                <h2>Congratulations!</h2>
-                <p>You have successfully redeemed a reward.</p>
-            </div>
-        </div>
-    
+  <div id="reward">
+    <div>
+      <h2>Available Rewards</h2>
+      <ul>
+        <li v-for="reward in rewards" :key="reward.id">
+          {{ reward.name }} - {{ reward.points }} points
+          <img v-if="reward.img" :src="reward.img" alt="Reward Image" />
+          <p>{{ reward.description }}</p>
+          <button @click="redeemReward(reward)">Redeem</button>
+        </li>
+      </ul>
     </div>
+    <div class="my-rewards">
+      <h1>My Rewards</h1>
+      <p>Points: {{ points }}</p>
+      <button @click="redeemReward">Redeem Reward</button>
+      <div v-if="showReward">
+        <h2>Congratulations!</h2>
+        <p>You have successfully redeemed a reward.</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            points: 100, // Replace with actual points value
-            showReward: false,
-            rewards: [
-                { id: 1, name: 'Reward 1', points: 50, img: "https://via.placeholder.com/150", description: "This is a description of Reward 1."},
-                { id: 2, name: 'Reward 2', points: 100, img: "https://via.placeholder.com/150", description: "This is a description of Reward 2."},
-                { id: 3, name: 'Reward 3', points: 150,    img: "https://via.placeholder.com/150", description: "This is a description of Reward 3."},
-                { id: 4, name: 'Reward 4', points: 150,    img: "https://via.placeholder.com/150", description: "This is a description of Reward 4."},
-            ],
-        };
-    },
-    methods: {
-        redeemReward(reward) {
-            if (this.points >= reward.points) {
-                this.points -= reward.points;
-                this.showReward = true;
-            } else {
-                alert('Insufficient points to redeem this reward.');
-            }
+  data() {
+    return {
+      points: 100, // Replace with actual points value
+      showReward: false,
+      rewards: [
+        {
+          id: 1,
+          name: "Reward 1",
+          points: 50,
+          img: "https://via.placeholder.com/150",
+          description: "This is a description of Reward 1.",
         },
+        {
+          id: 2,
+          name: "Reward 2",
+          points: 100,
+          img: "https://via.placeholder.com/150",
+          description: "This is a description of Reward 2.",
+        },
+        {
+          id: 3,
+          name: "Reward 3",
+          points: 150,
+          img: "https://via.placeholder.com/150",
+          description: "This is a description of Reward 3.",
+        },
+        {
+          id: 4,
+          name: "Reward 4",
+          points: 150,
+          img: "https://via.placeholder.com/150",
+          description: "This is a description of Reward 4.",
+        },
+      ],
+    };
+  },
+  methods: {
+    redeemReward(reward) {
+      if (this.points >= reward.points) {
+        this.points -= reward.points;
+        this.showReward = true;
+      } else {
+        alert("Insufficient points to redeem this reward.");
+      }
     },
+  },
 };
 </script>
 
 <style scoped>
-    #reward {
-        text-align: center;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        /* margin: 20px; */
-        width: 100vw;
-    }
+#reward {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* margin: 20px; */
+  width: 100vw;
+  margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+  padding: 20px;
+}
 
-
-
-    button {
-        margin: 5px;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    ul li {
-        margin-bottom: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .show {
-        display: block;
-    }
-    .hide {
-        display: none;
-    }
+button {
+  margin: 5px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ul li {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
 </style>

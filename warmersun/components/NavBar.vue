@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav style="background-color: rgba(94, 186, 242, 0.9)">
+    <nav style="background-color: rgba(94, 186, 242)">
       <ul>
         <li class="linkhome"><a class="link" href="/">Home</a></li>
         <li class="linkprofile">
@@ -30,13 +30,15 @@ export default {};
   box-sizing: border-box;
 }
 nav {
-  border-radius: 5px 5px 35px 35px;
   text-align: center;
   background-color: #3eb489;
   overflow: hidden;
   position: fixed;
   z-index: 1001;
   height: 8.5rem;
+  width: 100%;
+  top: 0;
+  left: 0;
   width: 100%;
 }
 ul {
