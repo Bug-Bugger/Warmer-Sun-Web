@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
 
-const url = "http://34.162.44.216/api/" 
+const url = "http://34.162.44.216/api" 
 
 export const useUserStore = defineStore("user", {
 
