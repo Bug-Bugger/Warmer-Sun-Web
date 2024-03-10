@@ -71,6 +71,12 @@ const getActions = async () => {
 </script>
 
 <style scoped>
+
+.box {
+    background: url("../assets/background.jpg") no-repeat center center fixed;
+    height: 100vh;
+}
+
 .profile {
   padding: 20px;
   box-shadow: rgb(5, 117, 16, 0.4) 5px 5px, rgba(5, 117, 16, 0.3) 10px 10px,

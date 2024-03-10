@@ -66,6 +66,7 @@ onMounted(() => {
   display: flex;
   width: 100%;
   height: 100vh;
+  background: url("../assets/background.jpg") no-repeat center center fixed;
 }
 
 .upload-section {
@@ -74,6 +75,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   padding: 1em;
+  background: url("../assets/background.jpg") no-repeat center center fixed;
 }
 
 input {

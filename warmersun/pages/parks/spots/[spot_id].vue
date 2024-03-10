@@ -145,12 +145,14 @@ console.log(actions.value)
 
 <style scoped>
 #spot {
-    margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
+    margin-top: 110px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    background: url("../../../assets/background.jpg") no-repeat center center fixed;
+    height: 100vh;
     /* margin: 20px; */
 }
 
@@ -215,6 +217,8 @@ h2 {
 
 .activity-box {
     width:50%;
+    background-color: white;
+    border-radius: 0.5rem;
 }
 
 .activity-list {
