@@ -10,12 +10,21 @@
           ]"
         >
           <l-tile-layer
-            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           ></l-tile-layer>
           <l-marker
             v-if="gotLocation"
             :lat-lng="[userLocation.lat, userLocation.lng]"
           ></l-marker>
+          <l-marker
+            v-for="spot in spotLocation"
+            :lat-lng="[spot.lat, spot.lng]"
+          >
+        <l-popup>
+          <h1>Spot</h1>
+          <p>Spot</p>
+        </l-popup>
+        </l-marker>
         </l-map>
       </client-only>
     </div>
@@ -27,8 +36,14 @@
   <script>
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import { useUserStore } from "~/stores/userStore";
+import axios from "axios";
 //   import { icon } from "leaflet";
 export default {
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
   components: { LMap, LTileLayer },
   props: {
     defaultLocation: {
@@ -43,10 +58,11 @@ export default {
     return {
       userLocation: {},
       parkLocation: [],
+      spotLocation: [],
       tileProvider: {
         attribution:
-          '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       },
       zoom: 18,
       gotLocation: false,
@@ -54,22 +70,48 @@ export default {
   },
   mounted() {
     this.getUserPosition();
+    this.getSpotLocation();
+    
   },
   methods: {
     async getUserPosition() {
-      // check if API is supported
-      if (navigator.geolocation) {
-        // get  geolocation
-        navigator.geolocation.getCurrentPosition((pos) => {
-          // set user location
-          this.userLocation = {
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude,
-          };
-          console.log(this.userLocation);
-        });
-      }
-    },
+  // Check if a location is stored in localStorage
+  const storedLocation = localStorage.getItem("userLocation");
+  if (storedLocation){
+    this.userLocation = JSON.parse(storedLocation);
+    return;
+  }
+
+  // check if API is supported
+  if (navigator.geolocation) {
+    // get  geolocation
+    navigator.geolocation.getCurrentPosition((pos) => {
+      // set user location
+      this.userLocation = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      };
+      localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+    }, () => {
+      // if user denies location
+      alert("Please enable location");
+      this.userLocation = {
+        lat: 42.454323,
+        lng: -76.475266,
+      };
+      localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+    });
+  }
+  else {
+    // if API is not supported
+    alert("Geolocation is not supported by this browser.");
+    this.userLocation = {
+      lat: 42.454323,
+      lng: -76.475266,
+    };
+    localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
+  }
+},
 
     userLocationMarker() {
       console.log(this.userLocation, "user location");
@@ -82,6 +124,25 @@ export default {
       //   })
       // });
     },
+
+    async getSpotLocation() {
+      axios.get(this.userStore.url + "/spot/").then((res) => {
+        console.log(res.data.spots, "spot location");
+        res.data.spots.forEach((spot) => {
+          this.spotLocation.push({
+            lat: spot.latitude,
+            lng: spot.longitude,
+            name: spot.name,
+            park: spot.park,
+          });
+        });
+        console.log(this.spotLocation, "spot location")
+        console.log(this.spotLocation[0], "spot location lat")
+      })
+
+      ;
+    },
+    
   },
 };
 </script>
