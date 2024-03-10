@@ -2,7 +2,8 @@
   <div class="box">
     <div class="profile">
       <div class="profile-header">
-        <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
+        <input type="file" id="file" ref="file" style="display: none" />
+        <img @click="changeProfile" class="avatar" src="../assets/home.png" alt="Profile Picture" />
         <h1 ref="username" class="name">{{ userStore.username }}</h1>
         <p class="bio">Your Bio</p>
       </div>
@@ -47,6 +48,10 @@ onMounted(async () => {
 
 });
 
+const changeProfile = () => {
+  console.log("Change profile");
+};
+
 const getPoints = async () => {
   const reponse = await axios.get(userStore.url + '/users/' + userStore.user).then((res) => {
     console.log(res.data);
@@ -89,6 +94,7 @@ const getActions = async () => {
 .profile-header {
   text-align: center;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .avatar {
