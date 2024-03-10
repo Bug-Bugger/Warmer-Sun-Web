@@ -10,6 +10,7 @@ export const useUserStore = defineStore("user", {
     state: () => ({
         user: null,
         token: null,
+        url: "http://34.162.44.216/api",
     }),
 
     actions: {        
