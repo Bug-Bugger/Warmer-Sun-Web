@@ -34,27 +34,26 @@ export const useUserStore = defineStore("user", {
             const router = useRouter();
             router.push("/login");
         },
-        async register(email: string, password: string) {
+        async register(username: string, password: string) {
             try {
-                
                 const response = await axios.post(`${url}/users`, {
-                    Headers: {
+                    username,
+                    password
+                }, {
+                    headers: {
                         'Content-Type': 'application/json',
-                    },
-                    email,
-                    password,
+                    }
                 });
                 this.user = response.data.user;
                 console.log(response.data);
                 console.log(this.user);
                 return response.data;
             } catch (error) {
-                return error
+                return error.response ? error.response.data : error;
             }
         }
 
 
 }}
-
 
 )
