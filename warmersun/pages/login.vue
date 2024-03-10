@@ -1,12 +1,12 @@
 <template>
   <section class="login">
-    <form class="login-form">
+    <form class="login-form" @submit.prevent="login">
       <div class="login-content">
         <h2>Welcome Back!</h2>
         <div class="input-group">
           <input
             v-model="username"
-            type="username"
+            type="text" 
             id="username"
             name="username"
             placeholder="Username"
@@ -21,16 +21,15 @@
             placeholder="Password"
           />
         </div>
-        <div class="submit-btn">
-          <div @click="login" type="submit">Login!</div>
-        </div>
-        <div class="have-account">
-          <p>Don't have an account? <a href="/register">Register!</a></p>
-        </div>
+        <button type="submit" class="submit-btn">Login!</button> 
+      </div>
+      <div class="have-account">
+        <p>Don't have an account? <a href="/register">Register!</a></p>
       </div>
     </form>
   </section>
 </template>
+
 
 <script setup>
 import { useUserStore } from "~/stores/userStore";
@@ -41,9 +40,11 @@ const userStore = useUserStore();
 const username = ref("");
 const password = ref("");
 
-console.log(username, password);
-
 const login = () => {
+  // Log the actual values, not the ref objects
+  console.log('Username:', username.value, 'Password:', password.value);
+
+  // Continue with the login process
   userStore.login(username.value, password.value);
 };
 </script>
@@ -90,7 +91,7 @@ const login = () => {
   box-shadow: 0 0 0 2px rgba(4, 206, 176, 0.2);
 }
 
-.submit-btn div {
+.submit-btn {
   margin-top: 2rem;
   padding: 0.65rem 2rem;
   color: #fff;
@@ -101,7 +102,7 @@ const login = () => {
   transition: background-color 0.2s;
 }
 
-.submit-btn div:hover {
+.submit-btn:hover {
   background-color: #038c73;
 }
 
