@@ -12,13 +12,13 @@
                 <h1>Verified?</h1>
             </div>
             <ul class="activity-list">
-                <li class="activity" :key="activity.id" v-for="activity in activities">
+                <li class="activity" ref="activities" :key="activity.id" v-for="activity in actions">
                     <div class="activity-des">
-                        <h3>{{activity.name}}</h3>
-                    <p>{{activity.description}}</p>
+                        <h3>{{activity.id}}</h3>
+                    <p>{{activity.title}}</p>
                     </div>
                 
-                    <img v-if="activity.verified" src="../../../assets/checkmark.svg" alt="Activity 1">
+                    <img v-if="activity.is_verified" src="../../../assets/checkmark.svg" alt="Activity 1">
                     <img v-else src="../../../assets/xmark.svg" alt="Activity 1">
                 </li>
             </ul>
@@ -31,24 +31,19 @@
                 <h1>Description</h1>
                 <h1>Points</h1>
             </div>
-            <ul class="points-list">
-                <li @click="selectAction" class="points" :key="point.id" v-for="point in points">
-                    <!-- <h3>{{point.name}}</h3> -->
-                    <p>{{point.description}}</p>
-                    <p>{{ point.point }}</p>
-                    <!-- <img v-if="point.verified" src="../../../assets/checkmark.svg" alt="Activity 1">
-                    <img v-else src="../../../assets/xmark.svg" alt="Activity 1"> -->
-                </li>
-            </ul>
+            <label for="cars">Choose an action:</label>
+
+<select v-model="awardPoints" name="cars" id="cars">
+  <option v-for="point in points" :key="point.name" :value="point.point">{{ point.description }}, Points: {{ point.point }}</option>
+</select> 
             
             <!-- Form group -->
             <div class="group">
                 <label class="group">Group:</label>
-                <div v-for="groupMember in groupMembers" class="group-members">
-                    <h1>hi</h1>
+                <div ref="groupMembers" v-for="groupMember in group" :key="groupMember.name" class="group-members">
                     <p>{{groupMember.name}}</p>
                 </div>
-                <input type="text" id="group" name="group">
+                <input ref="member" type="text" id="group" name="group">
                 <button @click="addMember">Add Member</button>
             </div>
 
@@ -65,17 +60,20 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useUserStore } from '~/stores/userStore';
+import axios from 'axios'
+
 const route = useRoute()
 let spotId = route.params.spot_id
+const userStore = useUserStore()
+
+let awardPoints = ref(100)
+let member = ref('')
 
 console.log(spotId)
 
-const activities = [
-    { id: 1, name: 'Group 1', description: 'Activity 1 description', verified: true },
-    { id: 2, name: 'Group 2', description: 'Activity 2 description', verified: false },
-    { id: 3, name: 'Group 3', description: 'Activity 3 description', verified: true },
-    { id: 4, name: 'Group 4', description: 'Activity 4 description', verified: false },
-]
+let activities = ref([])
 
 const points = [
     { id: 1, name: 'Bob', description: 'Activity 1 description', point: 100 },
@@ -87,9 +85,9 @@ const points = [
 
 const files = []
 
-const actions = []
+const actions = ref([])
 
-const groupMembers = []
+const group = ref([])
 
 let selected = false
 
@@ -103,18 +101,25 @@ const submit = () => {
 }
 
 const addMember = () => {
+    console.log("sdcsdc")
     const member = document.getElementById('group').value
-    groupMembers.push({ name: member })
-    console.log(groupMembers)
+    group.value.push({ name: member })
+    // console.log(groupMembers)
 }
 
-const selectAction = (e) => {
-    selected = !selected
-    console.log(selected)
-    let click = e.target
-    console.log(click)
-    
+
+const getActions =  async() => {
+    const response = await axios.get(userStore.url + `/spot/${spotId}/action`).then((res) => {
+        actions.value = res.data.actions
+        console.log(res.data.actions, "actions")
+    })
 }
+
+onMounted(() => {
+    getActions()
+})
+
+console.log(actions.value)
 
 
 </script>
