@@ -4,22 +4,10 @@
       <div class="login-content">
         <h2>Welcome Back!</h2>
         <div class="input-group">
-<<<<<<< Updated upstream
           <input v-model="username" type="username" id="username" name="username" placeholder="Username">
         </div>
         <div class="input-group">
           <input v-model="password" type="password" id="password" name="password" placeholder="Password">
-=======
-          <input type="email" id="email" name="email" placeholder="Email" />
-        </div>
-        <div class="input-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-          />
->>>>>>> Stashed changes
         </div>
         <div class="submit-btn">
           <div @click="login" type="submit">Login!</div>
@@ -32,7 +20,6 @@
   </section>
 </template>
 
-<<<<<<< Updated upstream
 <script setup>
 import { useUserStore } from '~/stores/userStore';
 import { ref } from 'vue';
@@ -48,10 +35,6 @@ const login = () => {
   userStore.login(username.value, password.value);
 };
 
-=======
-<script>
-export default {};
->>>>>>> Stashed changes
 </script>
 
 <style>

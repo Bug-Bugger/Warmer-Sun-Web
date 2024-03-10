@@ -2,7 +2,7 @@
     <div class="profile">
         <div class="profile-header">
             <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
-            <h1 ref="username" class="name">{{ username }}</h1>
+            <h1 ref="username" class="name">{{ userStore.username }}</h1>
             <p class="bio">Your Bio</p>
         </div>
         <div class="profile-content">

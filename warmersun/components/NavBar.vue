@@ -12,15 +12,20 @@
         <li class="linkmap"><a class="link" href="/map">Map</a></li>
         <li class="linkrewards"><a class="link" href="/rewards">Rewards</a></li>
         <li class="linklogin">
-          <Button class="save"><a href="/login">Login</a></Button>
+          <Button v-if="!userStore.isLoggedIn" class="save"><a href="/login">Login</a></Button>
+          <Button v-else @click="userStore.logout" class="save"><a href="/">Logout</a></Button>
         </li>
       </ul>
     </nav>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { useUserStore } from '~/stores/userStore';
+import { ref } from 'vue';
+
+const userStore = useUserStore();
+
 </script>
 
 <style>

@@ -9,6 +9,7 @@ export const useUserStore = defineStore("user", {
 
     state: () => ({
         user: null,
+        username : "",
         isLoggedIn: false,
         url: "http://34.162.44.216/api",
     }),
@@ -50,10 +51,11 @@ export const useUserStore = defineStore("user", {
         },
         async logout() {
             this.user = null;
-            this.token = null;
-            localStorage.removeItem("token");
-            const router = useRouter();
-            router.push("/login");
+            this.isLoggedIn = false;
+            this.username = "";
+            sessionStorage.removeItem("user");
+            sessionStorage.removeItem("isLoggedIn");
+            sessionStorage.removeItem("username");
         },
         async register(username: string, password: string) {
             try {
@@ -84,6 +86,7 @@ export const useUserStore = defineStore("user", {
                     },
                 });
                 console.log(response.data);
+                this.username = response.data.username;
                 return response.data;
             } catch (error) {
                 return error.response ? error.response.data : error;
