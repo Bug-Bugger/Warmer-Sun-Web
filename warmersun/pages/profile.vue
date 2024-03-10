@@ -1,54 +1,63 @@
 <template>
     <div class="profile">
-        <h1>{{ user.name }}</h1>
-        <p>{{ user.bio }}</p>
-        <img :src="user.avatar" alt="User Avatar" />
-        <!-- <ul>
-            <li><strong>Email:</strong> {{ user.email }}</li>
-            <li><strong>Location:</strong> {{ user.location }}</li>
-            <li><strong>Website:</strong> <a :href="user.website">{{ user.website }}</a></li>
-        </ul> -->
+        <div class="profile-header">
+            <img class="avatar" src="../assets/home.png" alt="Profile Picture" />
+            <h1 class="name">Your Name</h1>
+            <p class="bio">Your Bio</p>
+        </div>
+        <div class="profile-content">
+            <!-- Add your content here -->
+            <div class="content-wrapper">
+                <div class="contributions">
+                    <h2>Contributions</h2>
+                    <p>Number of contributions: 0</p>
+                    <p>Total points: 0</p>
 
-        
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            user: {
-                name: "John Doe",
-                bio: "Software Developer",
-                avatar: "/path/to/avatar.jpg",
-                email: "john.doe@example.com",
-                location: "New York, USA",
-                website: "https://example.com"
-            }
-        };
-    }
-};
+    name: 'Profile',
+    // Add your data, methods, and computed properties here
+}
 </script>
 
 <style scoped>
 .profile {
-    text-align: center;
-    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.profile img {
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #f0f8f4;
+}
+
+.avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
-.profile ul {
-    list-style-type: none;
-    padding: 0;
+.name {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #2ecc71;
 }
 
-.profile ul li {
-    margin-bottom: 5px;
+.bio {
+    font-size: 16px;
+    color: #555;
 }
+
+/* Add your custom styles here */
+
 </style>
