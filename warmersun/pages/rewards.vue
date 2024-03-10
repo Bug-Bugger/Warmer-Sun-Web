@@ -1,8 +1,8 @@
 <template>
   <div id="reward">
-    <div>
+    <div class="general-awards">
       <h2>Available Rewards</h2>
-      <ul>
+      <ul class="tilesWrap">
         <li v-for="reward in rewards" :key="reward.id">
           {{ reward.name }} - {{ reward.points }} points
           <img v-if="reward.img" :src="reward.img" alt="Reward Image" />
@@ -81,9 +81,12 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   /* margin: 20px; */
-  width: 100vw;
   margin-top: 135px; /* Adjust this value to match the height of your fixed navbar */
   padding: 20px;
+}
+
+.general-awards {
+  width: 500px;
 }
 
 button {
@@ -91,12 +94,15 @@ button {
 }
 ul {
   list-style-type: none;
-  padding: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 ul li {
+  width: 200px;
+  height: 300px;
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
@@ -107,5 +113,99 @@ ul li {
 }
 .hide {
   display: none;
+}
+.tilesWrap {
+  padding: 0;
+  margin: 50px auto;
+  list-style: none;
+  text-align: center;
+}
+.tilesWrap li {
+  display: inline-block;
+  width: 20%;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 80px 20px 40px;
+  position: relative;
+  vertical-align: top;
+  margin: 10px;
+  font-family: "helvetica", san-serif;
+  min-height: 25vh;
+  background: #262a2b;
+  border: 1px solid #252727;
+  text-align: left;
+}
+.tilesWrap li h2 {
+  font-size: 114px;
+  margin: 0;
+  position: absolute;
+  opacity: 0.2;
+  top: 50px;
+  right: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.tilesWrap li h3 {
+  font-size: 20px;
+  color: #b7b7b7;
+  margin-bottom: 5px;
+}
+.tilesWrap li p {
+  font-size: 16px;
+  line-height: 18px;
+  color: #b7b7b7;
+  margin-top: 5px;
+}
+.tilesWrap li button {
+  background: transparent;
+  border: 1px solid #b7b7b7;
+  padding: 10px 20px;
+  color: #b7b7b7;
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-40px);
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+.tilesWrap li:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: #fff;
+  transform: skew(2deg, 2deg);
+}
+.tilesWrap li:after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+.tilesWrap li:nth-child(1):before {
+  background: #c9ffbf;
+  background: -webkit-linear-gradient(to right, #ffafbd, #c9ffbf);
+  background: linear-gradient(to right, #ffafbd, #c9ffbf);
+}
+.tilesWrap li:nth-child(2):before {
+  background: #f2709c;
+  background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
+  background: linear-gradient(to right, #ff9472, #f2709c);
+}
+.tilesWrap li:nth-child(3):before {
+  background: #c21500;
+  background: -webkit-linear-gradient(to right, #ffc500, #c21500);
+  background: linear-gradient(to right, #ffc500, #c21500);
+}
+.tilesWrap li:nth-child(4):before {
+  background: #fc354c;
+  background: -webkit-linear-gradient(to right, #0abfbc, #fc354c);
+  background: linear-gradient(to right, #0abfbc, #fc354c);
 }
 </style>
