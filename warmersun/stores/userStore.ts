@@ -10,6 +10,8 @@ export const useUserStore = defineStore("user", {
     state: () => ({
         user: null,
         username : "",
+        points: 0,
+        actions:[], 
         isLoggedIn: false,
         url: "http://34.162.44.216/api",
     }),
@@ -53,9 +55,13 @@ export const useUserStore = defineStore("user", {
             this.user = null;
             this.isLoggedIn = false;
             this.username = "";
+            this.points = 0;
+            this.actions = [];
             sessionStorage.removeItem("user");
             sessionStorage.removeItem("isLoggedIn");
             sessionStorage.removeItem("username");
+            sessionStorage.removeItem("points");
+            sessionStorage.removeItem("actions");
         },
         async register(username: string, password: string) {
             try {
@@ -87,6 +93,9 @@ export const useUserStore = defineStore("user", {
                 });
                 console.log(response.data);
                 this.username = response.data.username;
+                this.points = response.data.points;
+                this.actions = response.data.actions;
+                console.log(this.points);
                 return response.data;
             } catch (error) {
                 return error.response ? error.response.data : error;

@@ -91,7 +91,7 @@ const submit = () => {
     const response = axios.post(userStore.url + `/spot/${spotId}/action`, {
         title: awardPoints.value[0],
         description: awardPoints.value[0],
-        users_name: group.value,
+        users_name: [userStore.username],
         categories: [awardPoints.value[0]],
         minute_duration: 90
     }, {

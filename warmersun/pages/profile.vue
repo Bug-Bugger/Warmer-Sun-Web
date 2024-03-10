@@ -12,14 +12,14 @@
           <div class="contributions">
             <h2>Contributions</h2>
             <p>Number of contributions: 0</p>
-            <p>Total points: 0</p>
+            <p>Total points: {{ userStore.points }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="list">
-      <li v-for="item in items">
-        {{ item.message }}
+      <li v-for="item in userStore.actions">
+        {{ item.title }}
       </li>
     </div>
   </div>
@@ -35,7 +35,7 @@ onMounted(async () => {
   console.log(userStore.user);
   const user = await userStore.getProfile();
   username = user.username;
-  console.log(user);
+  console.log(userStore.points);
   console.log(user.username);
 });
 </script>
